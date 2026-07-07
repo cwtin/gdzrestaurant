@@ -846,10 +846,12 @@ function showCategory(categoryId) {
 
   const menuTop = menuWrapper.offsetTop - categoryNav.offsetHeight - 80;
 
+if (window.pageLoaded) {
   window.scrollTo({
     top: Math.max(menuTop, 0),
     behavior: "smooth"
   });
+}
 
   scrollActiveButtonToCenter();
 }
@@ -890,5 +892,8 @@ window.addEventListener("scroll", handleBackToTop);
 document.addEventListener("DOMContentLoaded", () => {
   createCategoryNav();
   showCategory(activeCategoryId);
-});
 
+  setTimeout(() => {
+    window.pageLoaded = true;
+  }, 500);
+});
